@@ -73,7 +73,7 @@ if __name__=='__main__':
         np.dot(np.random.randn(200,2), [[0.25, 0],[0, 1]])+[0,-2]
         )) 
 
-    G, C, Y = llc(X, C = 8, k = 2, beta = 1e-9)
+    G, C, Y = llc(X, C = 8, k = 2, beta = 100)
     D = Y-X
     distortion = np.sqrt(np.sum((D)**2,axis = 1))
     dm = np.mean(distortion)
@@ -82,13 +82,14 @@ if __name__=='__main__':
     print 'Mean (std) Distortion: %0.4g (%0.4g)' %(dm,ds)
     # Plotting
     import matplotlib.pyplot as plt    
-    plt.scatter(X[:,0],X[:,1],color = 'b', marker = 'o',sizes=nd)
-    plt.scatter(C[:,0],C[:,1],color = 'r',marker = 's',sizes = [50]*X.shape[0])
     for i in range(X.shape[0]):        
         plt.annotate(
         '', xy=X[i,:2], xycoords='data',
         xytext=Y[i,:2], textcoords='data',
         arrowprops={'arrowstyle': '<-'})
+    plt.scatter(X[:,0],X[:,1],color = 'b', marker = 'o',sizes=nd)
+    plt.scatter(C[:,0],C[:,1],color = 'r',marker = 's',sizes = [50]*X.shape[0])
+    
     plt.grid()
     plt.title('Mean (std) Distortion: %0.4g (%0.4g)' %(dm,ds))
     plt.legend(['data points','anchor points'])
