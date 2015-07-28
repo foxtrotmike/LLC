@@ -6,6 +6,7 @@ Created on Mon Jul 27 22:34:32 2015
 Description:
 This module implements the approximate Locality Constrained Linear Coding as described in the 2010 paper by Wang et al. [1]. Given array of datapoints X (N x d) and codebook C (c x d), it returns a vector of approximated points Y = G * C. LLC introduces sparsity by forcing those coefficients of a given data point that correspond to codebook vectors which are not that point's k-nearest neighbors. LLC also uses regularization.
 This code has been verified to produce the same LLC coefficients as the original matlab implementation by Wang et al. [1] available at: www.ifp.illinois.edu/~jyang29/LLC.htm
+However, this code has a test script which can be used to study the workings of the LLC method on a toy dataset.
 Usage: from llc import llc
 Running as a script:
 When run as a script, this code will plot a toy data and show distortion of each data point (proprtiontal to marker size). There will be arrows indicating the original location of the point and the transformed location.
