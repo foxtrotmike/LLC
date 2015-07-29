@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """
 Created on Mon Jul 27 22:34:32 2015
-@author: Dr. Fayyaz ul Amir Afsar Minhas (afsar <at> pieas dot edu dot pk)
+@author: Dr. Fayyaz ul Amir Afsar Minhas (afsar <at> pieas dot edu dot pk, http://faculty.pieas.edu.pk/fayyaz/)
 
 Description:
 This module implements the approximate Locality Constrained Linear Coding as described in the 2010 paper by Wang et al. [1]. Given array of datapoints X (N x d) and codebook C (c x d), it returns a vector of approximated points Y = G * C. LLC introduces sparsity by forcing those coefficients of a given data point that correspond to codebook vectors which are not that point's k-nearest neighbors. LLC also uses regularization.
@@ -60,8 +60,8 @@ def llc(X, C = None, k = None, beta = 1e-6, **kwargs):
        Z = np.dot(z,z.T)                       # local covariance
        Z = Z + II*beta*np.trace(Z);            # regularlization (K>D)
        w = np.linalg.solve(Z,ones)     #np.dot(np.linalg.inv(Z), ones)
-       w = w/np.sum(w)                         # enforce sum(w)=1
-       G[i,idx] = w.T
+       w = w/np.sum(w)                         # enforce sum(w)=1       
+       G[i,idx] = w.ravel()
     Y = np.dot(G,C)
     return G, C, Y
     
